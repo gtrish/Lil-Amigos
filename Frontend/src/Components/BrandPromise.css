@@ -1,0 +1,55 @@
+.promise-section {
+  background-color: var(--bg-accent); /* Your soft peach Figma color */
+  padding: 70px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+}
+
+.promise-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.promise-intro {
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.8;
+  font-size: 1.05rem;
+  opacity: 0.9;
+}
+
+.promise-subtitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 25px;
+}
+
+.promise-list {
+  list-style: none;
+  text-align: left;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.promise-list li {
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  opacity: 0.9;
+}
+
+.promise-icon {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .promise-section { padding: 50px 20px; }
+  .promise-list li { font-size: 0.95rem; align-items: flex-start; }
+}

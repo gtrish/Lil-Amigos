@@ -1,0 +1,22 @@
+.tagline-container {
+  text-align: center;
+  padding: 60px 20px;
+  border-bottom: 1px solid var(--border-color); /* Adds that clean line from your design */
+}
+
+.tagline-sub {
+  font-size: 1.1rem;
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.tagline-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.tagline-desc {
+  font-size: 1rem;
+  opacity: 0.9;
+}

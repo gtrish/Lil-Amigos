@@ -1,0 +1,110 @@
+/* The Main Wrapper */
+.nav-container {
+  display: flex;
+  justify-content: space-between; /* Pushes Logo to left, Cart to right */
+  align-items: center; /* Vertically centers everything */
+  padding: 20px 50px;
+  background-color: var(--bg-color); /* Using your Figma variables! */
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-main);
+}
+
+/* The Middle Links */
+.nav-links {
+  display: flex;
+  gap: 40px; /* Space between words */
+  list-style: none;
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+
+/* The Right Side Actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.login-btn {
+  padding: 10px 30px;
+  border-radius: 50px;
+  border: 1px solid var(--text-main);
+  background: transparent;
+  cursor: pointer;
+}
+
+.cart-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+.mobile-menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 15px 20px; /* Shrink the side padding on small screens */
+  }
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  /* Redesign the links into a dropdown menu */
+  .nav-links {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 70px; /* Pushes it just below the navbar */
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-main);
+    flex-direction: column; /* Stacks links vertically */
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Soft shadow below the menu */
+    z-index: 100; /* Keeps it on top of the Hero Gallery */
+  }
+
+  /* When the React state adds the 'active' class, show the menu! */
+  .nav-links.active {
+    display: flex; 
+  }
+   
+  /* Later, we can add a hamburger menu icon (≡) to replace the hidden links! */
+}
+/* Mobile Dropdown Menu */
+.mobile-dropdown {
+  position: absolute;
+  top: 70px; /* Adjust based on your navbar height */
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-main);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transform: translateY(-150%); /* Hides it initially */
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.mobile-dropdown.open {
+  transform: translateY(0); /* Slides it down */
+}
+
+.mobile-nav-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.mobile-nav-links li {
+  padding: 15px 30px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.mobile-nav-links li:last-child {
+  border-bottom: none;
+}

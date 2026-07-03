@@ -1,0 +1,150 @@
+.product-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 50px;
+  color: var(--text-main);
+}
+
+.detail-image-box {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.detail-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-info-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detail-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.detail-price {
+  font-size: 1.5rem;
+  opacity: 0.8;
+  margin-bottom: 25px;
+}
+
+.detail-description {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.size-selector h4 {
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.size-buttons {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.size-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-btn.active, .size-btn:hover {
+  background: var(--text-main);
+  color: var(--bg-main);
+}
+
+.add-to-cart-btn {
+  padding: 18px;
+  background-color: var(--text-main);
+  color: var(--bg-main);
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: opacity 0.2s;
+}
+
+.add-to-cart-btn:hover {
+  opacity: 0.9;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .product-detail-container {
+    grid-template-columns: 1fr;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 30px;
+  }
+  
+  .detail-title { font-size: 2rem; }
+}
+/* =========================================
+   CUSTOM TOAST NOTIFICATION
+   ========================================= */
+.toast-notification {
+  position: fixed;
+  bottom: -100px; /* Hides it completely off the screen initially */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-main); /* Dark aesthetic background */
+  color: var(--bg-main);
+  padding: 15px 30px;
+  border-radius: 50px; /* Clean pill shape */
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Creates a slight bounce effect */
+  z-index: 1000;
+}
+
+.toast-notification.show {
+  bottom: 40px; /* Slides it up into view */
+}
+
+.toast-icon {
+  background-color: #4CAF50; /* A soft success green */
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+/* Ensure it looks great on mobile too */
+@media (max-width: 768px) {
+  .toast-notification {
+    width: 90%;
+    bottom: -100px;
+  }
+  .toast-notification.show {
+    bottom: 20px;
+  }
+}

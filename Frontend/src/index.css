@@ -1,0 +1,29 @@
+:root {
+  /* Colors */
+  --bg-main: #FDFBF7;       /* The warm cream background */
+  --text-main: #5C4332;     /* The deep earthy brown text */
+  --bg-accent: #F4E4D4;     /* The soft peach background for the "Promise" section */
+  --bg-footer: #4A5340;     /* The olive green footer */
+  --border-color: #D9C8B8;  /* Soft tan for the lines and card borders */
+
+  /* Typography (Go to Google Fonts and grab one of these!) */
+  --font-main: 'Quicksand', 'Nunito', sans-serif; /* Friendly, rounded fonts */
+  
+  /* Layout */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+/* Reset default margins */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Paint the whole app with your Lil Amigos brand colors */
+body {
+  background-color: var(--bg-main); /* That warm cream color */
+  color: var(--text-main);          /* The earthy brown text */
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+}

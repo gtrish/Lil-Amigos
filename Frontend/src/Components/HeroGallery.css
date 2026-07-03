@@ -1,0 +1,60 @@
+.hero-container {
+  position: relative; /* Crucial: Allows the explore button to float relatively inside this box */
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* Creating the horizontal panel using CSS Grid */
+.hero-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns of exactly equal width */
+  height: 450px; /* Adjust this height based on your Figma design scale */
+  width: 100%;
+}
+
+.hero-img-box {
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+/* Placeholder backgrounds until you add your real images later */
+.img1 { background-image: url('/images/image 48.png'); }
+.img2 { background-image: url('/images/image 49.png'); }
+.img3 { background-image: url('/images/image 50.png'); }
+.img4 { background-image: url('/images/image 51.png'); }
+
+/* The Floating "Explore" Button styled to match your design */
+.hero-explore-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Keeps it exactly dead-center */
+  padding: 12px 40px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  border: none;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.hero-explore-btn:hover {
+  opacity: 0.9;
+}
+/* =========================================
+   MOBILE RESPONSIVENESS (Max width 768px)
+   ========================================= */
+@media (max-width: 768px) {
+  .hero-gallery-grid {
+    /* Change from 4 columns to a 2x2 square grid */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .hero-img-box {
+    height: 250px; /* Give the images enough height so they don't squash */
+  }
+}
