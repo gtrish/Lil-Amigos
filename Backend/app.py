@@ -15,8 +15,12 @@ app = Flask(__name__)
 # With no DATABASE_URL it falls back to the local SQLite file, so local dev
 # works exactly as before.
 db_url = os.environ.get("DATABASE_URL", "sqlite:///lilamigos.db")
-if db_url.startswith("postgres://"):          # some hosts still hand out the old prefix
-    db_url = db_url.replace("postgres://", "postgresql://", 1)
+# Tell SQLAlchemy exactly which Postgres driver to use (psycopg2). Without this,
+# newer SQLAlchemy versions look for a different driver (psycopg 3) and crash.
+for prefix in ("postgres://", "postgresql://"):
+    if db_url.startswith(prefix):
+        db_url = "postgresql+psycopg2://" + db_url[len(prefix):]
+        break
 app.config["SQLALCHEMY_DATABASE_URI"] = db_url
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {"pool_pre_ping": True}   # survives idle DB connections
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
