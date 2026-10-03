@@ -5,7 +5,7 @@
 }
 
 .categories-title {
-  font-size: 2rem;
+  font-size: var(--fs-h1);
   color: var(--text-main);
   margin-bottom: 30px;
   font-weight: 500;

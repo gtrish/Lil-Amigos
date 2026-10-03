@@ -11,8 +11,8 @@
 }
 
 .tagline-title {
-  font-size: 2.5rem;
-  font-weight: 500;
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-semibold);
   margin-bottom: 15px;
 }
 

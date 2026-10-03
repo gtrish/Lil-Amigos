@@ -1,11 +1,11 @@
 // src/pages/Home.jsx
-import React from 'react';
-import HeroGallery from '../components/HeroGallery';
-import Tagline from '../components/Tagline';
-import ProductGrid from '../components/ProductGrid';
-import Categories from '../components/Categories';
-import BrandPromise from '../components/BrandPromise';
-
+import React, { useState, useEffect } from 'react';
+import HeroGallery from '../Components/HeroGallery';
+import Tagline from '../Components/Tagline';
+import ProductGrid from '../Components/ProductGrid';
+import Categories from '../Components/Categories';
+import BrandPromise from '../Components/BrandPromise';
+import { useCart } from '../Context/CartContext';
 const Home = () => {
   return (
     <>

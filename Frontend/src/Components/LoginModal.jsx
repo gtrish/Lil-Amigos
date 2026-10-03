@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './LoginModal.css';
+import { API } from '../config';
 
 // Added onLoginSuccess prop
 const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
@@ -16,8 +17,8 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     
     // Switch the endpoint based on the mode
     const endpoint = isLoginMode 
-      ? 'http://127.0.0.1:5001/api/login' 
-      : 'http://127.0.0.1:5001/api/signup';
+      ? `${API}/api/login` 
+      : `${API}/api/signup`;
       
     const payload = isLoginMode 
       ? { email, password } 
@@ -61,8 +62,11 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     <div className="modal-overlay">
       <div className="modal-box">
         
-        <button className="close-modal-btn" onClick={onClose}>
-          ✕
+        <button className="close-modal-btn" onClick={onClose} aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
         </button>
 
         <h2 className="modal-title">

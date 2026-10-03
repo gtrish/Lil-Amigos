@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
@@ -8,10 +9,13 @@ const Footer = () => {
         <div className="footer-column">
           <h4>Quick Links</h4>
           <ul>
-            <li>Home</li>
-            <li>New Arrivals</li>
-            <li>Track Order</li>
-            <li>Returns Policy</li>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/#new-arrivals">New Arrivals</Link></li>
+            {/* Track Order and Returns Policy aren't real pages yet — left as
+                plain text rather than a link that goes nowhere. Once those
+                pages exist, wrap them in <Link> the same way as above. */}
+            <li className="footer-link-pending">Track Order</li>
+            <li className="footer-link-pending">Returns Policy</li>
           </ul>
         </div>
         

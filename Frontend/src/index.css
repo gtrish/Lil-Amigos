@@ -6,12 +6,48 @@
   --bg-footer: #4A5340;     /* The olive green footer */
   --border-color: #D9C8B8;  /* Soft tan for the lines and card borders */
 
-  /* Typography (Go to Google Fonts and grab one of these!) */
+  /* A single confident accent, reserved for purchase actions (Add to Cart,
+     Checkout, Place Order) so those buttons stand out from ordinary ones
+     like Login — everything else stays in the brown/olive family. */
+  --accent: #B5602E;        /* muted terracotta */
+  --accent-hover: #9A4F24;
+  --accent-soft: #F0DCCB;   /* for subtle backgrounds/badges in the accent family */
+
+  /* Aliases so every page (including Checkout, which previously used its
+     own undefined variables and silently fell back to generic grey/blue)
+     pulls from the same brand tokens. */
+  --text-dark: var(--text-main);
+  --text-muted: var(--text-main);
+  --background-light: var(--bg-main);
+  --surface-color: var(--bg-main);
+  --primary-color: var(--accent);
+  --btn-text: var(--bg-main);
+  --input-border: var(--border-color);
+  --input-bg: var(--bg-main);
+
+  /* Typography */
   --font-main: 'Quicksand', 'Nunito', sans-serif; /* Friendly, rounded fonts */
-  
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* A fixed type scale — every heading on the site should use one of
+     these, rather than a size picked individually per component. */
+  --fs-hero: 2.5rem;    /* hero tagline, product detail title */
+  --fs-h1: 2rem;        /* section titles: New Arrivals, Categories, Cart */
+  --fs-h2: 1.5rem;      /* sub-section titles: Our Promise, Order Summary */
+  --fs-body: 1rem;      /* default paragraph/button text */
+  --fs-small: 0.875rem; /* captions, prices, meta text */
+
   /* Layout */
   --radius-sm: 4px;
   --radius-md: 8px;
+
+  /* Motion — one calm, decelerating curve used everywhere, so hovering a
+     button and navigating a page feel like they belong to the same site. */
+  --ease-elegant: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-fast: 180ms;
+  --duration-base: 350ms;
+  --duration-slow: 500ms;
 }
 /* Reset default margins */
 * {
@@ -26,4 +62,35 @@ body {
   color: var(--text-main);          /* The earthy brown text */
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
+}
+
+/* The one deliberate page-level motion: each new page settles in with a
+   slow, calm fade + rise instead of snapping into place. */
+.page-transition {
+  animation: pageEnter var(--duration-slow) var(--ease-elegant);
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* A soft shimmer for loading states, in the site's own cream/tan tones
+   instead of a generic grey placeholder. */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-accent) 25%, var(--border-color) 37%, var(--bg-accent) 63%);
+  background-size: 800px 100%;
+  animation: shimmer 1.6s linear infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* Respect people who've asked their OS for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-transition { animation: none; }
+  * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }

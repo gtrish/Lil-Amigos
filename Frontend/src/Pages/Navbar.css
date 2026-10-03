@@ -31,39 +31,40 @@
   border: 1px solid var(--text-main);
   background: transparent;
   cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-elegant),
+              color var(--duration-fast) var(--ease-elegant);
+}
+
+.login-btn:hover {
+  background-color: var(--text-main);
+  color: var(--bg-main);
 }
 
 .cart-icon {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-main);
+  font-size: 24px;
   cursor: pointer;
+  position: relative;
 }
 
 .cart-count {
-  position: absolute;
-  top: -8px;
-  right: -10px;
-  min-width: 16px;
-  height: 16px;
-  padding: 0 4px;
-  border-radius: 50px;
-  background-color: var(--accent);
-  color: var(--bg-main);
-  font-size: 0.7rem;
-  font-weight: var(--fw-semibold);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
+  display: inline-block;
 }
 
+/* Replays every time React remounts this span via the key trick below,
+   so the badge visibly acknowledges an item being added — the one
+   micro-interaction on this component, tied to an actual user action. */
+.cart-count.pulse {
+  animation: cartPulse var(--duration-base) var(--ease-elegant);
+}
+
+@keyframes cartPulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
 .mobile-menu-icon {
   display: none;
-  align-items: center;
-  color: var(--text-main);
+  font-size: 24px;
   cursor: pointer;
   margin-left: 15px;
 }

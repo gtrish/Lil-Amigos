@@ -15,8 +15,14 @@ export const CartProvider = ({ children }) => {
     setCartItems((prevCart) => [...prevCart, { ...product, size }]);
   };
 
+  // 4. ADDED: Function to clear the cart completely
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
+    // 5. ADDED: clearCart is now inside the value object
+    <CartContext.Provider value={{ cartItems, addToCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
