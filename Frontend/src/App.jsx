@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './Components/NavBar/Navbar.jsx'
 import {BrowserRouter, Routes, Route, useLocation} from 'react-router-dom';
 import Footer from './Components/Footer.jsx';
@@ -6,6 +6,7 @@ import Home from './Pages/Home.jsx';
 import ProductDetail from './Pages/ProductDetail.jsx';
 import CategoryPage from './Pages/CategoryPage.jsx';
 import { CartProvider } from './Context/CartContext.jsx';
+import { AuthProvider } from './Context/AuthContext.jsx';
 import Cart from './Pages/Cart.jsx';
 import NotFound from './Pages/NotFound.jsx';
 import AdminDashboard from './Pages/AdminDashboard.jsx';
@@ -33,18 +34,16 @@ function AnimatedRoutes() {
 }
 
 function App() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
-  return(
-    <div>
+  return (
+    <AuthProvider>
       <CartProvider>
-      <BrowserRouter>
-        <Navbar />
-        <AnimatedRoutes />
-        <Footer />
-      </BrowserRouter>
+        <BrowserRouter>
+          <Navbar />
+          <AnimatedRoutes />
+          <Footer />
+        </BrowserRouter>
       </CartProvider>
-    </div>
+    </AuthProvider>
   );
 }
 export default App;

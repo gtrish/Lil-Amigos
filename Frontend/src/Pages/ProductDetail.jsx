@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './ProductDetail.css';
 import { useCart } from '../Context/CartContext.jsx';
 import { API } from '../config';
@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState('');
   const [showToast, setShowToast] = useState(false);
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   // 2. Fetch the specific product from Flask when the page loads
   useEffect(() => {
@@ -61,6 +62,15 @@ const ProductDetail = () => {
     }, 3000);
   };
 
+  const handleBuyNow = () => {
+    if (!selectedSize) {
+      alert('Please select a size.');
+      return;
+    }
+    addToCart(product, selectedSize);
+    navigate('/checkout');
+  };
+
   return (
     <div className="product-detail-container">
       {/* Left Column: Image */}
@@ -97,9 +107,14 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <button className="add-to-cart-btn" onClick={handleAddToCart} disabled={product.stock === 0}>
-          {product.stock === 0 ? 'Out of stock' : 'Add to Cart'}
-        </button>
+        <div className="detail-actions">
+          <button className="add-to-cart-btn" onClick={handleAddToCart} disabled={product.stock === 0}>
+            {product.stock === 0 ? 'Out of stock' : 'Add to Cart'}
+          </button>
+          {product.stock !== 0 && (
+            <button className="buy-now-btn" onClick={handleBuyNow}>Buy now</button>
+          )}
+        </div>
       </div>
 
       <div className={`toast-notification ${showToast ? 'show' : ''}`}>

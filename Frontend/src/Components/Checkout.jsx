@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../Context/CartContext';
 import { API } from '../config';
+import { useAuth } from '../Context/AuthContext';
 import './Checkout.css'; 
 
 const Checkout = () => {
   const { cartItems, clearCart } = useCart();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
+    name: user?.fullName || '',
+    email: user?.email || '',
     address: '',
     city: '',
     zip: ''

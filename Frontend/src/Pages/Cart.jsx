@@ -4,7 +4,7 @@ import { useCart } from '../Context/CartContext';
 import './Cart.css';
 
 const Cart = () => {
-  const { cartItems } = useCart();
+  const { cartItems, removeFromCart } = useCart();
   const navigate = useNavigate();
   // FIX 1: Make the math robust so it works with numbers OR strings
   const calculateTotal = () => {
@@ -51,6 +51,13 @@ const Cart = () => {
               <p className="cart-item-price">
                 {typeof item.price === 'number' ? `₹${item.price.toFixed(2)}` : item.price}
               </p>
+              <button
+                className="cart-remove-btn"
+                onClick={() => removeFromCart(index)}
+                aria-label={`Remove ${item.name} from cart`}
+              >
+                Remove
+              </button>
             </div>
           ))}
         </div>

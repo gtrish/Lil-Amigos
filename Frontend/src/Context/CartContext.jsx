@@ -1,28 +1,39 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// 1. Create the Context
 const CartContext = createContext();
-
-// 2. Create a Custom Hook to use the cart easily
 export const useCart = () => useContext(CartContext);
 
-// 3. Create the Provider that will wrap your app
+const KEY = 'lilamigos_cart';
+
+// The cart survives page reloads.
+const loadCart = () => {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY));
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+};
+
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(loadCart);
 
-  // Function to add an item
+  useEffect(() => {
+    try { localStorage.setItem(KEY, JSON.stringify(cartItems)); } catch { /* ignore */ }
+  }, [cartItems]);
+
   const addToCart = (product, size) => {
-    setCartItems((prevCart) => [...prevCart, { ...product, size }]);
+    setCartItems((prev) => [...prev, { ...product, size }]);
   };
 
-  // 4. ADDED: Function to clear the cart completely
-  const clearCart = () => {
-    setCartItems([]);
+  const removeFromCart = (index) => {
+    setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
+
+  const clearCart = () => setCartItems([]);
 
   return (
-    // 5. ADDED: clearCart is now inside the value object
-    <CartContext.Provider value={{ cartItems, addToCart, clearCart }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

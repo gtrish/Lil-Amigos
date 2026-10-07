@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './ProductGrid.css';
 import { Link } from 'react-router-dom';
 import { API } from '../config';
+import { useAuth } from '../Context/AuthContext.jsx';
 
 const ProductGrid = () => {
   // 1. Set up the state to hold our database products
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
+  const firstName = user ? user.fullName.split(' ')[0] : '';
 
   // 2. Fetch the products from Flask when the page loads
   useEffect(() => {
@@ -31,6 +34,7 @@ const ProductGrid = () => {
   return (
     <div className="product-section" id="new-arrivals">
       <h2 className="section-title">New Arrivals</h2>
+      {user && <p className="welcome-line">Hi, {firstName}! Check out our latest collection.</p>}
 
       {loading ? (
         <div className="product-grid">

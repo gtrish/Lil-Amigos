@@ -97,3 +97,10 @@
   .cart-page { padding: 0 20px; }
   .cart-content { grid-template-columns: 1fr; }
 }
+.cart-remove-btn { background: none; border: none; color: var(--text-main); text-decoration: underline; font: inherit; font-size: 0.9rem; cursor: pointer; padding: 6px; }
+.cart-remove-btn:hover { color: #a63a2a; }
+@media (max-width: 600px) {
+  .cart-item-row { flex-wrap: wrap; gap: 12px; }
+  .cart-item-info { flex-basis: 50%; }
+  .cart-item-price { margin-left: auto; }
+}

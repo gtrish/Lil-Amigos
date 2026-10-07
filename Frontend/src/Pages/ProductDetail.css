@@ -154,3 +154,7 @@
     bottom: 20px;
   }
 }
+.detail-actions { display: flex; flex-direction: column; gap: 12px; }
+.buy-now-btn { padding: 16px; background: transparent; color: var(--text-main); border: 1px solid var(--text-main); border-radius: 50px; font-size: 1.1rem; font-weight: var(--fw-semibold); cursor: pointer; text-transform: uppercase; letter-spacing: 1px; }
+.buy-now-btn:hover { background: var(--bg-accent); }
+.add-to-cart-btn:disabled { opacity: 0.5; cursor: not-allowed; }

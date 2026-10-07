@@ -1,38 +1,55 @@
-/* The Main Wrapper */
+/* Header wrapper: lets the phone menu hang exactly below the bar */
+.site-header { position: relative; z-index: 50; }
+
 .nav-container {
   display: flex;
-  justify-content: space-between; /* Pushes Logo to left, Cart to right */
-  align-items: center; /* Vertically centers everything */
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
   padding: 20px 50px;
-  background-color: var(--bg-color); /* Using your Figma variables! */
+  background-color: var(--bg-color);
   border-bottom: 1px solid var(--border-color);
   font-family: var(--font-main);
 }
 
-/* The Middle Links */
+.nav-logo { text-decoration: none; color: inherit; white-space: nowrap; }
+.nav-logo h2 { margin: 0; }
+
 .nav-links {
   display: flex;
-  gap: 40px; /* Space between words */
+  gap: 40px;
   list-style: none;
+  margin: 0;
+  padding: 0;
   font-weight: var(--fw-medium);
-  cursor: pointer;
 }
+.nav-links a { text-decoration: none; color: inherit; }
 
-/* The Right Side Actions */
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-}
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+.nav-auth { display: flex; align-items: center; gap: 12px; }
 
 .login-btn {
-  padding: 10px 30px;
+  padding: 10px 26px;
   border-radius: 50px;
   border: 1px solid var(--text-main);
   background: transparent;
+  color: inherit;
+  font: inherit;
   cursor: pointer;
+  white-space: nowrap;
 }
+.auth-link {
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.auth-link:hover { text-decoration: underline; }
 
+.cart-link { text-decoration: none; color: inherit; }
 .cart-icon {
   position: relative;
   display: inline-flex;
@@ -41,7 +58,6 @@
   color: var(--text-main);
   cursor: pointer;
 }
-
 .cart-count {
   position: absolute;
   top: -8px;
@@ -63,72 +79,58 @@
 .mobile-menu-icon {
   display: none;
   align-items: center;
+  background: none;
+  border: none;
+  padding: 4px;
   color: var(--text-main);
   cursor: pointer;
-  margin-left: 15px;
 }
-@media (max-width: 768px) {
-  .nav-container {
-    padding: 15px 20px; /* Shrink the side padding on small screens */
-  }
-  .mobile-menu-icon {
-    display: block;
-  }
 
-  /* Redesign the links into a dropdown menu */
-  .nav-links {
-    display: none; /* Hidden by default */
+/* Phone menu (hidden on desktop) */
+.mobile-dropdown { display: none; }
+
+@media (max-width: 1024px) {
+  .nav-container { padding: 18px 24px; }
+  .nav-links { gap: 22px; font-size: 0.95rem; }
+  .login-btn { padding: 8px 18px; }
+}
+
+@media (max-width: 768px) {
+  .nav-container { padding: 12px 16px; }
+  .nav-logo h2 { font-size: 1.25rem; }
+  .nav-links, .nav-auth { display: none; }
+  .nav-actions { gap: 14px; }
+  .mobile-menu-icon { display: inline-flex; }
+
+  .mobile-dropdown {
+    display: block;
     position: absolute;
-    top: 70px; /* Pushes it just below the navbar */
+    top: 100%;
     left: 0;
     width: 100%;
     background-color: var(--bg-main);
-    flex-direction: column; /* Stacks links vertically */
-    align-items: center;
-    padding: 20px 0;
-    gap: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Soft shadow below the menu */
-    z-index: 100; /* Keeps it on top of the Hero Gallery */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.25s var(--ease-elegant), opacity 0.25s var(--ease-elegant), visibility 0.25s;
   }
+  .mobile-dropdown.open { transform: translateY(0); opacity: 1; visibility: visible; }
 
-  /* When the React state adds the 'active' class, show the menu! */
-  .nav-links.active {
-    display: flex; 
+  .mobile-nav-links { list-style: none; margin: 0; padding: 8px 0 16px; display: flex; flex-direction: column; }
+  .mobile-nav-links li { border-bottom: 1px solid var(--border-color); font-size: 1.05rem; font-weight: var(--fw-medium); }
+  .mobile-nav-links li a { display: block; padding: 14px 20px; text-decoration: none; color: inherit; }
+  .mobile-nav-links li.mobile-auth-row { display: flex; gap: 12px; padding: 16px 20px 4px; border-bottom: none; }
+  .mobile-auth-row button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 50px;
+    border: 1px solid var(--text-main);
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: var(--fw-semibold);
+    cursor: pointer;
   }
-   
-  /* Later, we can add a hamburger menu icon (≡) to replace the hidden links! */
-}
-/* Mobile Dropdown Menu */
-.mobile-dropdown {
-  position: absolute;
-  top: 70px; /* Adjust based on your navbar height */
-  left: 0;
-  width: 100%;
-  background-color: var(--bg-main);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  transform: translateY(-150%); /* Hides it initially */
-  transition: transform 0.3s ease-in-out;
-  z-index: 999;
-}
-
-.mobile-dropdown.open {
-  transform: translateY(0); /* Slides it down */
-}
-
-.mobile-nav-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-}
-
-.mobile-nav-links li {
-  padding: 15px 30px;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.mobile-nav-links li:last-child {
-  border-bottom: none;
+  .mobile-auth-row .mobile-signup { background: var(--accent); border-color: var(--accent); color: var(--bg-main); }
 }

@@ -78,3 +78,4 @@
     grid-template-columns: 1fr; 
   }
 }
+.welcome-line { margin: -18px 0 28px; font-size: var(--fs-body, 1rem); color: var(--text-main); }
